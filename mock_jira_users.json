@@ -1,0 +1,97 @@
+{
+  "users": [
+    {
+      "id": "user_001",
+      "username": "stacey.johnson",
+      "displayName": "Stacey",
+      "emailAddress": "stacey.johnson@company.com",
+      "accountType": "atlassian",
+      "active": true,
+      "timeZone": "America/New_York",
+      "groups": ["jira-software-users", "developers"],
+      "roles": ["Developer", "Frontend Specialist"],
+      "skills": [
+        {"name": "React", "level": 4},
+        {"name": "JavaScript", "level": 5},
+        {"name": "CSS", "level": 4},
+        {"name": "TypeScript", "level": 3},
+        {"name": "UI/UX Design", "level": 3}
+      ],
+      "capacity": {
+        "pointsPerSprint": 40,
+        "hoursPerWeek": 40,
+        "currentLoad": 24,
+        "utilizationPercent": 60
+      },
+      "preferences": {
+        "workTypes": ["Frontend Development", "UI Components", "User Experience"],
+        "projectTypes": ["Web Applications", "Mobile Apps"]
+      }
+    },
+    {
+      "id": "user_002", 
+      "username": "maya.patel",
+      "displayName": "Maya",
+      "emailAddress": "maya.patel@company.com",
+      "accountType": "atlassian",
+      "active": true,
+      "timeZone": "America/Los_Angeles",
+      "groups": ["jira-software-users", "developers", "senior-developers"],
+      "roles": ["Senior Developer", "Backend Specialist"],
+      "skills": [
+        {"name": "Python", "level": 5},
+        {"name": "Django", "level": 4},
+        {"name": "PostgreSQL", "level": 4},
+        {"name": "AWS", "level": 4},
+        {"name": "Docker", "level": 3},
+        {"name": "API Design", "level": 5}
+      ],
+      "capacity": {
+        "pointsPerSprint": 45,
+        "hoursPerWeek": 40,
+        "currentLoad": 36,
+        "utilizationPercent": 80
+      },
+      "preferences": {
+        "workTypes": ["Backend Development", "API Development", "Database Design"],
+        "projectTypes": ["Microservices", "Data Processing", "Integration"]
+      }
+    },
+    {
+      "id": "user_003",
+      "username": "supraja.reddy",
+      "displayName": "Supraja", 
+      "emailAddress": "supraja.reddy@company.com",
+      "accountType": "atlassian",
+      "active": true,
+      "timeZone": "Asia/Kolkata",
+      "groups": ["jira-software-users", "developers", "qa-team"],
+      "roles": ["Full Stack Developer", "QA Engineer"],
+      "skills": [
+        {"name": "Java", "level": 4},
+        {"name": "Spring Boot", "level": 4},
+        {"name": "React", "level": 3},
+        {"name": "Selenium", "level": 4},
+        {"name": "Jest", "level": 3},
+        {"name": "MySQL", "level": 3},
+        {"name": "Testing", "level": 5}
+      ],
+      "capacity": {
+        "pointsPerSprint": 42,
+        "hoursPerWeek": 40,
+        "currentLoad": 30,
+        "utilizationPercent": 71
+      },
+      "preferences": {
+        "workTypes": ["Full Stack Development", "Test Automation", "Quality Assurance"],
+        "projectTypes": ["Enterprise Applications", "Testing Frameworks"]
+      }
+    }
+  ],
+  "metadata": {
+    "created": "2025-08-12T03:29:00Z",
+    "version": "1.0",
+    "description": "Mock JIRA users for TaskFlow testing",
+    "totalUsers": 3
+  }
+}
