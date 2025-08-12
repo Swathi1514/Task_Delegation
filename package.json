@@ -5,9 +5,12 @@
   "main": "src/web/index.html",
   "scripts": {
     "start": "cd src/web && python3 -m http.server 8000",
-    "start:api": "cd src/api && python3 mock_jira_api.py",
+    "start:api": "cd src/api && python3 api_service.py",
+    "start:api:real": "cd src/api && python3 jira_api.py",
+    "start:api:mock": "cd src/api && python3 mock_jira_api.py",
     "dev": "cd src/web && python3 -m http.server 3000",
     "test": "cd src/api && python3 -m pytest",
+    "test:mock": "cd src/api && python3 mock_jira_api.py",
     "docs": "cd docs && python3 -m http.server 8080"
   },
   "repository": {

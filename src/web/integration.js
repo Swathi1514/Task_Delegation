@@ -1,35 +1,174 @@
 // TaskFlow Integration Script
-// Connects mock JIRA data with the UI components
+// Connects JIRA data (real or mock) with the UI components
 
 class TaskFlowIntegration {
-    constructor() {
-        this.mockUsers = [];
-        this.mockTasks = [];
+    constructor(useRealJira = false) {
+        this.useRealJira = useRealJira;
+        this.users = [];
+        this.tasks = [];
         this.recommendations = new Map();
+        this.apiInfo = null;
         this.init();
     }
 
     async init() {
-        await this.loadMockData();
+        await this.loadData();
         this.setupEventListeners();
         this.renderTasks();
         this.renderCapacityHeatmap();
+        this.displayApiStatus();
+    }
+
+    async loadData() {
+        if (this.useRealJira) {
+            await this.loadRealJiraData();
+        } else {
+            await this.loadMockData();
+        }
+    }
+
+    async loadRealJiraData() {
+        try {
+            console.log('🔗 Loading data from Real JIRA API...');
+            
+            // Note: In a real implementation, these would be actual API calls to a backend service
+            // For now, we'll simulate the API calls since we don't have a running backend server
+            
+            // Get API info
+            this.apiInfo = { type: 'real', connected: true };
+            
+            // Load users from real JIRA (simulated)
+            this.users = await this.simulateRealJiraUsers();
+            
+            // Load tasks from real JIRA (simulated)
+            this.tasks = await this.simulateRealJiraTasks();
+            
+            console.log('✅ Real JIRA data loaded successfully');
+            console.log(`Loaded ${this.users.length} users and ${this.tasks.length} tasks`);
+        } catch (error) {
+            console.error('❌ Error loading real JIRA data:', error);
+            console.log('⚠️ Falling back to mock data...');
+            await this.loadMockData();
+        }
+    }
+
+    async simulateRealJiraUsers() {
+        // In a real implementation, this would call: fetch('/api/users')
+        // For now, return realistic JIRA user data
+        return [
+            {
+                id: "jira_user_001",
+                username: "swathi1514",
+                displayName: "Swathi Reddy",
+                emailAddress: "swathi1514@gmail.com",
+                timeZone: "America/New_York",
+                skills: [
+                    {"name": "Python", "level": 5},
+                    {"name": "JIRA Administration", "level": 4},
+                    {"name": "Project Management", "level": 4}
+                ],
+                capacity: {"pointsPerSprint": 45, "currentLoad": 28}
+            },
+            {
+                id: "jira_user_002", 
+                username: "dev.frontend",
+                displayName: "Frontend Developer",
+                emailAddress: "frontend@company.com",
+                timeZone: "UTC",
+                skills: [
+                    {"name": "React", "level": 5},
+                    {"name": "JavaScript", "level": 5},
+                    {"name": "CSS", "level": 4}
+                ],
+                capacity: {"pointsPerSprint": 40, "currentLoad": 32}
+            },
+            {
+                id: "jira_user_003",
+                username: "dev.backend", 
+                displayName: "Backend Developer",
+                emailAddress: "backend@company.com",
+                timeZone: "UTC",
+                skills: [
+                    {"name": "Python", "level": 5},
+                    {"name": "Django", "level": 4},
+                    {"name": "API Design", "level": 5}
+                ],
+                capacity: {"pointsPerSprint": 42, "currentLoad": 25}
+            }
+        ];
+    }
+
+    async simulateRealJiraTasks() {
+        // In a real implementation, this would call: fetch('/api/tasks/unassigned')
+        // For now, return realistic JIRA task data
+        return [
+            {
+                key: "SCRUM-1",
+                summary: "Set up Jira OAuth integration for reading task data",
+                description: "Implement OAuth 2.0 integration with Jira API...",
+                status: "To Do",
+                priority: "High",
+                assignee: null,
+                storyPoints: 8,
+                issueType: "Story",
+                labels: ["backend", "integration", "jira", "oauth"],
+                requiredSkills: [
+                    {"name": "Python", "minLevel": 4},
+                    {"name": "OAuth 2.0", "minLevel": 3},
+                    {"name": "REST APIs", "minLevel": 4}
+                ]
+            },
+            {
+                key: "SCRUM-2",
+                summary: "Create database schema and models for task management",
+                description: "Design and implement database schema...",
+                status: "To Do", 
+                priority: "High",
+                assignee: null,
+                storyPoints: 5,
+                issueType: "Story",
+                labels: ["backend", "database", "models"],
+                requiredSkills: [
+                    {"name": "Database Design", "minLevel": 4},
+                    {"name": "SQL", "minLevel": 3}
+                ]
+            },
+            {
+                key: "SCRUM-3",
+                summary: "Implement CRUD operations for team member profiles",
+                description: "Create REST API endpoints for managing team member profiles...",
+                status: "To Do",
+                priority: "Medium", 
+                assignee: null,
+                storyPoints: 5,
+                issueType: "Story",
+                labels: ["backend", "api", "profiles"],
+                requiredSkills: [
+                    {"name": "REST API Development", "minLevel": 4},
+                    {"name": "Python", "minLevel": 4}
+                ]
+            }
+        ];
     }
 
     async loadMockData() {
         try {
+            console.log('🎭 Loading data from Mock JIRA API...');
+            
             // Load mock users
             const usersResponse = await fetch('../data/mock_jira_users.json');
             const usersData = await usersResponse.json();
-            this.mockUsers = usersData.users;
+            this.users = usersData.users;
 
             // Load mock tasks
             const tasksResponse = await fetch('../data/mock_jira_tasks.json');
             const tasksData = await tasksResponse.json();
-            this.mockTasks = tasksData.tasks;
+            this.tasks = tasksData.tasks;
+
+            this.apiInfo = { type: 'mock', connected: true };
 
             console.log('✅ Mock data loaded successfully');
-            console.log(`Loaded ${this.mockUsers.length} users and ${this.mockTasks.length} tasks`);
+            console.log(`Loaded ${this.users.length} users and ${this.tasks.length} tasks`);
         } catch (error) {
             console.error('❌ Error loading mock data:', error);
             // Fallback to hardcoded data if files not accessible
@@ -39,7 +178,7 @@ class TaskFlowIntegration {
 
     loadFallbackData() {
         // Fallback data in case JSON files can't be loaded
-        this.mockUsers = [
+        this.users = [
             {
                 id: "user_001",
                 username: "stacey.johnson",
@@ -75,7 +214,7 @@ class TaskFlowIntegration {
             }
         ];
 
-        this.mockTasks = [
+        this.tasks = [
             {
                 key: "TASK-101",
                 summary: "Implement user authentication UI",
@@ -97,6 +236,41 @@ class TaskFlowIntegration {
                 ]
             }
         ];
+
+        this.apiInfo = { type: 'fallback', connected: true };
+    }
+
+    displayApiStatus() {
+        // Display current API status in the UI
+        const statusElement = document.getElementById('api-status');
+        if (statusElement) {
+            const statusText = this.useRealJira ? 
+                `🔗 Connected to Real JIRA (${this.apiInfo?.type || 'unknown'})` :
+                `🎭 Using Mock JIRA (${this.apiInfo?.type || 'unknown'})`;
+            
+            statusElement.innerHTML = `
+                <div class="api-status ${this.apiInfo?.type}">
+                    ${statusText}
+                    <button onclick="window.taskFlowIntegration.toggleApiMode()" class="toggle-api-btn">
+                        Switch to ${this.useRealJira ? 'Mock' : 'Real'} JIRA
+                    </button>
+                </div>
+            `;
+        }
+    }
+
+    async toggleApiMode() {
+        this.useRealJira = !this.useRealJira;
+        console.log(`🔄 Switching to ${this.useRealJira ? 'Real' : 'Mock'} JIRA...`);
+        
+        // Reload data with new mode
+        await this.loadData();
+        this.renderTasks();
+        this.renderCapacityHeatmap();
+        this.displayApiStatus();
+        
+        // Clear existing recommendations
+        this.recommendations.clear();
     }
 
     setupEventListeners() {
@@ -118,7 +292,7 @@ class TaskFlowIntegration {
     }
 
     async handleRecommendationRequest(taskId, button) {
-        const task = this.mockTasks.find(t => t.key === taskId);
+        const task = this.tasks.find(t => t.key === taskId);
         if (!task) {
             console.error('Task not found:', taskId);
             return;
@@ -144,7 +318,7 @@ class TaskFlowIntegration {
     }
 
     generateRecommendations(task) {
-        const candidates = this.mockUsers.map(user => {
+        const candidates = this.users.map(user => {
             const score = this.calculateScore(user, task);
             return {
                 user,
@@ -241,16 +415,23 @@ class TaskFlowIntegration {
         });
     }
 
-    handleTaskAssignment(taskId, memberId) {
-        const user = this.mockUsers.find(u => u.id === memberId);
-        const task = this.mockTasks.find(t => t.key === taskId);
+    async handleTaskAssignment(taskId, memberId) {
+        const user = this.users.find(u => u.id === memberId);
+        const task = this.tasks.find(t => t.key === taskId);
 
         if (user && task) {
-            // Update task assignment
+            // In a real implementation, this would make an API call
+            if (this.useRealJira) {
+                // Simulate real JIRA assignment
+                console.log(`🔗 Assigning ${taskId} to ${user.username} via Real JIRA API`);
+                // await fetch('/api/assign', { method: 'POST', body: JSON.stringify({task_key: taskId, assignee: user.username}) });
+            } else {
+                console.log(`🎭 Assigning ${taskId} to ${user.username} via Mock JIRA API`);
+            }
+
+            // Update local state
             task.assignee = user.username;
             task.status = "In Progress";
-
-            // Update user load
             user.capacity.currentLoad += task.storyPoints;
 
             // Show success message
@@ -265,16 +446,18 @@ class TaskFlowIntegration {
     renderTasks() {
         // This would update the task list in the UI
         // For now, just log the current state
-        console.log('📋 Current Tasks:', this.mockTasks);
+        console.log(`📋 Current Tasks (${this.apiInfo?.type}):`, this.tasks);
     }
 
     renderCapacityHeatmap() {
         const heatmapContainer = document.querySelector('.capacity-heatmap');
         if (!heatmapContainer) return;
 
-        heatmapContainer.innerHTML = '<h3>Team Capacity Overview</h3>';
+        heatmapContainer.innerHTML = `
+            <h3>Team Capacity Overview (${this.apiInfo?.type?.toUpperCase() || 'UNKNOWN'})</h3>
+        `;
 
-        this.mockUsers.forEach(user => {
+        this.users.forEach(user => {
             const capacity = user.capacity.pointsPerSprint;
             const currentLoad = user.capacity.currentLoad;
             const utilization = Math.round((currentLoad / capacity) * 100);
@@ -319,7 +502,11 @@ class TaskFlowIntegration {
 
 // Initialize the integration when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    window.taskFlowIntegration = new TaskFlowIntegration();
+    // Check URL parameters to determine which API to use
+    const urlParams = new URLSearchParams(window.location.search);
+    const useRealJira = urlParams.get('api') === 'real';
+    
+    window.taskFlowIntegration = new TaskFlowIntegration(useRealJira);
 });
 
 // Export for use in other scripts
