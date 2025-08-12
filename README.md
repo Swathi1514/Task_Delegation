@@ -1,4 +1,4 @@
-# TaskFlow - AI-Powered Task Assignment System
+# The Stones TaskFlow - AI-Powered Task Assignment System
 
 AI-powered task assignment system that recommends the best assignee for each task using skills, availability, workload, priority, and deadlines.
 

@@ -1,4 +1,4 @@
-// TaskFlow Login Authentication System
+// The Stones TaskFlow Login Authentication System
 
 document.addEventListener('DOMContentLoaded', function() {
     initializeLogin();
@@ -15,19 +15,19 @@ function initializeLogin() {
 
 // Mock user database
 const MOCK_USERS = {
-    'admin@taskflow.com': {
+    'admin@thestones-taskflow.com': {
         password: 'admin123',
         role: 'admin',
         name: 'Admin User',
         permissions: ['view_all', 'assign_tasks', 'manage_users', 'view_analytics']
     },
-    'manager@taskflow.com': {
+    'manager@thestones-taskflow.com': {
         password: 'manager123',
         role: 'manager',
         name: 'Project Manager',
         permissions: ['view_team', 'assign_tasks', 'view_analytics']
     },
-    'user@taskflow.com': {
+    'user@thestones-taskflow.com': {
         password: 'user123',
         role: 'user',
         name: 'Team Member',
@@ -237,7 +237,7 @@ function authenticateUser(user, rememberMe = false) {
     
     // Store in localStorage or sessionStorage based on remember me
     const storage = rememberMe ? localStorage : sessionStorage;
-    storage.setItem('taskflow_session', JSON.stringify(sessionData));
+    storage.setItem('thestones_taskflow_session', JSON.stringify(sessionData));
     
     setLoginButtonLoading(false);
     hideLoadingOverlay();
@@ -268,9 +268,9 @@ function checkExistingSession() {
 
 function getStoredSession() {
     // Check both localStorage and sessionStorage
-    let sessionData = localStorage.getItem('taskflow_session');
+    let sessionData = localStorage.getItem('thestones_taskflow_session');
     if (!sessionData) {
-        sessionData = sessionStorage.getItem('taskflow_session');
+        sessionData = sessionStorage.getItem('thestones_taskflow_session');
     }
     
     if (sessionData) {
@@ -278,8 +278,8 @@ function getStoredSession() {
             return JSON.parse(sessionData);
         } catch (e) {
             // Invalid session data, remove it
-            localStorage.removeItem('taskflow_session');
-            sessionStorage.removeItem('taskflow_session');
+            localStorage.removeItem('thestones_taskflow_session');
+            sessionStorage.removeItem('thestones_taskflow_session');
         }
     }
     
@@ -370,14 +370,14 @@ document.addEventListener('keydown', (e) => {
 });
 
 // Export functions for potential external use
-window.TaskFlowAuth = {
+window.TheStonesTaskFlowAuth = {
     authenticateUser,
     getStoredSession,
     isSessionValid,
     showNotification,
     logout: function() {
-        localStorage.removeItem('taskflow_session');
-        sessionStorage.removeItem('taskflow_session');
+        localStorage.removeItem('thestones_taskflow_session');
+        sessionStorage.removeItem('thestones_taskflow_session');
         window.location.href = 'login.html';
     }
 };

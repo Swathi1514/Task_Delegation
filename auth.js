@@ -1,4 +1,4 @@
-// TaskFlow Authentication Middleware
+// The Stones TaskFlow Authentication Middleware
 
 // Authentication state
 let currentUser = null;
@@ -36,9 +36,9 @@ function checkAuthentication() {
 
 function getStoredSession() {
     // Check both localStorage and sessionStorage
-    let sessionData = localStorage.getItem('taskflow_session');
+    let sessionData = localStorage.getItem('thestones_taskflow_session');
     if (!sessionData) {
-        sessionData = sessionStorage.getItem('taskflow_session');
+        sessionData = sessionStorage.getItem('thestones_taskflow_session');
     }
     
     if (sessionData) {
@@ -62,8 +62,8 @@ function isSessionValid(sessionData) {
 }
 
 function clearInvalidSession() {
-    localStorage.removeItem('taskflow_session');
-    sessionStorage.removeItem('taskflow_session');
+    localStorage.removeItem('thestones_taskflow_session');
+    sessionStorage.removeItem('thestones_taskflow_session');
 }
 
 function redirectToLogin() {
@@ -337,8 +337,8 @@ function handleLogout() {
     if (!confirmed) return;
     
     // Clear session data
-    localStorage.removeItem('taskflow_session');
-    sessionStorage.removeItem('taskflow_session');
+    localStorage.removeItem('thestones_taskflow_session');
+    sessionStorage.removeItem('thestones_taskflow_session');
     
     // Show logout message
     showNotification('Logged out successfully', 'info');
@@ -613,7 +613,7 @@ function showNotification(message, type = 'info') {
 }
 
 // Export authentication functions
-window.TaskFlowAuth = {
+window.TheStonesTaskFlowAuth = {
     getCurrentUser: () => currentUser,
     getSessionData: () => sessionData,
     hasPermission: (permission) => currentUser?.permissions?.includes(permission) || false,
