@@ -16,10 +16,10 @@ class MockJiraAPI:
     def load_mock_data(self):
         """Load mock users and tasks from JSON files"""
         try:
-            with open('mock_jira_users.json', 'r') as f:
+            with open('../data/mock_jira_users.json', 'r') as f:
                 self.users_data = json.load(f)
             
-            with open('mock_jira_tasks.json', 'r') as f:
+            with open('../data/mock_jira_tasks.json', 'r') as f:
                 self.tasks_data = json.load(f)
                 
             print("✅ Mock JIRA data loaded successfully")

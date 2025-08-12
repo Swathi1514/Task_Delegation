@@ -19,12 +19,12 @@ class TaskFlowIntegration {
     async loadMockData() {
         try {
             // Load mock users
-            const usersResponse = await fetch('./mock_jira_users.json');
+            const usersResponse = await fetch('../data/mock_jira_users.json');
             const usersData = await usersResponse.json();
             this.mockUsers = usersData.users;
 
             // Load mock tasks
-            const tasksResponse = await fetch('./mock_jira_tasks.json');
+            const tasksResponse = await fetch('../data/mock_jira_tasks.json');
             const tasksData = await tasksResponse.json();
             this.mockTasks = tasksData.tasks;
 

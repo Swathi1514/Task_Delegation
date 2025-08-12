@@ -1,0 +1,40 @@
+{
+  "name": "taskflow",
+  "version": "1.0.0",
+  "description": "AI-powered task assignment system that recommends the best assignee for each task using skills, availability, workload, priority, and deadlines",
+  "main": "src/web/index.html",
+  "scripts": {
+    "start": "cd src/web && python3 -m http.server 8000",
+    "start:api": "cd src/api && python3 mock_jira_api.py",
+    "dev": "cd src/web && python3 -m http.server 3000",
+    "test": "cd src/api && python3 -m pytest",
+    "docs": "cd docs && python3 -m http.server 8080"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Swathi1514/Task_Delegation.git"
+  },
+  "keywords": [
+    "ai",
+    "task-assignment",
+    "jira",
+    "recommendation-engine",
+    "capacity-planning",
+    "team-management"
+  ],
+  "author": "TaskFlow Team",
+  "license": "MIT",
+  "directories": {
+    "docs": "docs",
+    "src": "src",
+    "config": "config"
+  },
+  "engines": {
+    "python": ">=3.7"
+  },
+  "dependencies": {
+    "python": "^3.7.0"
+  },
+  "devDependencies": {},
+  "homepage": "https://github.com/Swathi1514/Task_Delegation#readme"
+}
