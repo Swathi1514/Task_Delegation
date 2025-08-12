@@ -11,8 +11,9 @@ AI-powered task assignment system that recommends the best assignee for each tas
 ## Scope
 
 ### MVP (In Scope)
-- Pull tasks from one tracker (e.g., Jira) and team member data (skills, capacity)
-- Generate top-3 assignee recommendations per task
+- Read task details from Jira for the current sprint only (title, description, story points, priority, due date, labels, status)
+- Pull team member data (skills, capacity, availability)
+- Generate top-3 assignee recommendations per task within the current sprint scope
 - Show an explanation (why these people)
 - Update assignment on confirmation and log a rationale
 - Notify via Slack/Teams
