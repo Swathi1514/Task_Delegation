@@ -14,8 +14,8 @@ TaskFlow is an AI-powered task assignment system that integrates with existing p
 - **Web UI**: Dashboard for task management and capacity visualization
 
 ### Technology Stack
-- **Backend**: Node.js/Python (recommendation engine)
-- **Database**: PostgreSQL (structured data) + Redis (caching)
+- **Backend**: java (recommendation engine)
+- **Database**: dynamodb  + Redis (caching)
 - **Frontend**: React.js with modern UI components
 - **Authentication**: SSO (SAML/OIDC)
 - **Deployment**: Docker containers, cloud-native
