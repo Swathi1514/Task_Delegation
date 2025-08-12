@@ -535,35 +535,123 @@ class TaskFlowIntegration {
         const heatmapContainer = document.querySelector('.capacity-heatmap');
         if (!heatmapContainer) return;
 
+        // Clear loading message and create enhanced heatmap
         heatmapContainer.innerHTML = `
-            <h3>Team Capacity Overview (${this.apiInfo?.type?.toUpperCase() || 'UNKNOWN'})</h3>
+            <div class="heatmap-header">
+                <h4>Team Capacity Overview (${this.apiInfo?.type?.toUpperCase() || 'UNKNOWN'} JIRA Data)</h4>
+                <div class="heatmap-summary">
+                    <span class="summary-item">👥 ${this.users.length} Team Members</span>
+                    <span class="summary-item">📊 Current Sprint Load</span>
+                </div>
+            </div>
+            <div class="heatmap-grid">
+                <div class="grid-header">
+                    <div class="member-col">Team Member</div>
+                    <div class="skills-col">Key Skills</div>
+                    <div class="load-col">Current Load</div>
+                    <div class="capacity-col">Capacity</div>
+                    <div class="utilization-col">Utilization</div>
+                </div>
+            </div>
         `;
+
+        const gridContainer = heatmapContainer.querySelector('.heatmap-grid');
 
         this.users.forEach(user => {
             const capacity = user.capacity.pointsPerSprint;
             const currentLoad = user.capacity.currentLoad;
             const utilization = Math.round((currentLoad / capacity) * 100);
+            
+            // Get top 3 skills for display
+            const topSkills = user.skills
+                .sort((a, b) => b.level - a.level)
+                .slice(0, 3)
+                .map(skill => `${skill.name} (${skill.level})`)
+                .join(', ');
 
-            const memberDiv = document.createElement('div');
-            memberDiv.className = 'capacity-member';
-            memberDiv.innerHTML = `
+            const memberRow = document.createElement('div');
+            memberRow.className = 'member-row';
+            memberRow.innerHTML = `
                 <div class="member-info">
-                    <strong>${user.displayName}</strong>
-                    <span>${currentLoad}/${capacity} points (${utilization}%)</span>
+                    <div class="member-name">
+                        <strong>${user.displayName}</strong>
+                        <small>@${user.username}</small>
+                    </div>
+                    <div class="member-timezone">${user.timeZone || 'UTC'}</div>
                 </div>
-                <div class="capacity-bar">
-                    <div class="capacity-fill" style="width: ${utilization}%; background-color: ${this.getCapacityColor(utilization)}"></div>
+                <div class="skills-info">
+                    <div class="skills-list">${topSkills}</div>
+                    <div class="skills-count">+${user.skills.length - 3} more</div>
+                </div>
+                <div class="load-info">
+                    <div class="load-value">${currentLoad} pts</div>
+                    <div class="load-bar">
+                        <div class="load-fill" style="width: ${Math.min((currentLoad / capacity) * 100, 100)}%; background-color: ${this.getCapacityColor(utilization)}"></div>
+                    </div>
+                </div>
+                <div class="capacity-info">
+                    <div class="capacity-value">${capacity} pts</div>
+                    <div class="capacity-remaining">${capacity - currentLoad} available</div>
+                </div>
+                <div class="utilization-info">
+                    <div class="utilization-percentage ${this.getUtilizationClass(utilization)}">${utilization}%</div>
+                    <div class="utilization-status">${this.getUtilizationStatus(utilization)}</div>
                 </div>
             `;
 
-            heatmapContainer.appendChild(memberDiv);
+            gridContainer.appendChild(memberRow);
         });
+
+        // Add team summary at the bottom
+        const totalCapacity = this.users.reduce((sum, user) => sum + user.capacity.pointsPerSprint, 0);
+        const totalLoad = this.users.reduce((sum, user) => sum + user.capacity.currentLoad, 0);
+        const teamUtilization = Math.round((totalLoad / totalCapacity) * 100);
+
+        const summaryRow = document.createElement('div');
+        summaryRow.className = 'team-summary';
+        summaryRow.innerHTML = `
+            <div class="summary-header">
+                <h4>📊 Team Summary</h4>
+            </div>
+            <div class="summary-stats">
+                <div class="stat-item">
+                    <span class="stat-label">Total Capacity:</span>
+                    <span class="stat-value">${totalCapacity} points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Current Load:</span>
+                    <span class="stat-value">${totalLoad} points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Available:</span>
+                    <span class="stat-value">${totalCapacity - totalLoad} points</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Team Utilization:</span>
+                    <span class="stat-value ${this.getUtilizationClass(teamUtilization)}">${teamUtilization}%</span>
+                </div>
+            </div>
+        `;
+
+        heatmapContainer.appendChild(summaryRow);
     }
 
     getCapacityColor(utilization) {
         if (utilization < 60) return '#4CAF50'; // Green
         if (utilization < 80) return '#FF9800'; // Orange
         return '#F44336'; // Red
+    }
+
+    getUtilizationClass(utilization) {
+        if (utilization < 60) return 'low-utilization';
+        if (utilization < 80) return 'medium-utilization';
+        return 'high-utilization';
+    }
+
+    getUtilizationStatus(utilization) {
+        if (utilization < 60) return '✅ Available';
+        if (utilization < 80) return '⚠️ Busy';
+        return '🔴 Overloaded';
     }
 
     showNotification(message, type = 'info') {

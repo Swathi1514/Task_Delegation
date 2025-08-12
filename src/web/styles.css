@@ -515,9 +515,234 @@ body {
     background: #9c4221;
 }
 
-/* Heatmap Legend */
-.heatmap-legend {
+/* Enhanced Capacity Heatmap */
+.capacity-heatmap {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.capacity-heatmap .heatmap-header h4 {
+    margin: 0 0 10px 0;
+    color: #2d3748;
+    font-size: 1.2em;
+}
+
+.capacity-heatmap .heatmap-summary {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: #718096;
+}
+
+.capacity-heatmap .summary-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.capacity-heatmap .heatmap-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1px;
+    background: #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.capacity-heatmap .grid-header {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+    background: #4a5568;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9em;
+}
+
+.capacity-heatmap .grid-header > div {
+    padding: 12px;
+    text-align: center;
+}
+
+.capacity-heatmap .member-row {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr 1fr 1fr;
+    background: white;
+    align-items: center;
+    min-height: 60px;
+}
+
+.capacity-heatmap .member-row > div {
+    padding: 12px;
+    border-right: 1px solid #e2e8f0;
+}
+
+.capacity-heatmap .member-row > div:last-child {
+    border-right: none;
+}
+
+.capacity-heatmap .member-info {
+    text-align: left;
+}
+
+.capacity-heatmap .member-name strong {
+    display: block;
+    color: #2d3748;
+    font-size: 1em;
+}
+
+.capacity-heatmap .member-name small {
+    color: #718096;
+    font-size: 0.8em;
+}
+
+.capacity-heatmap .member-timezone {
+    color: #a0aec0;
+    font-size: 0.75em;
+    margin-top: 2px;
+}
+
+.capacity-heatmap .skills-info {
+    text-align: left;
+}
+
+.capacity-heatmap .skills-list {
+    font-size: 0.85em;
+    color: #4a5568;
+    margin-bottom: 2px;
+}
+
+.capacity-heatmap .skills-count {
+    font-size: 0.75em;
+    color: #a0aec0;
+}
+
+.capacity-heatmap .load-info {
+    text-align: center;
+}
+
+.capacity-heatmap .load-value {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 4px;
+}
+
+.capacity-heatmap .load-bar {
+    width: 100%;
+    height: 6px;
+    background: #e2e8f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.capacity-heatmap .load-fill {
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.capacity-heatmap .capacity-info {
+    text-align: center;
+}
+
+.capacity-heatmap .capacity-value {
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 2px;
+}
+
+.capacity-heatmap .capacity-remaining {
+    font-size: 0.75em;
+    color: #718096;
+}
+
+.capacity-heatmap .utilization-info {
+    text-align: center;
+}
+
+.capacity-heatmap .utilization-percentage {
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-bottom: 2px;
+}
+
+.capacity-heatmap .utilization-status {
+    font-size: 0.75em;
+}
+
+.capacity-heatmap .low-utilization {
+    color: #38a169;
+}
+
+.capacity-heatmap .medium-utilization {
+    color: #d69e2e;
+}
+
+.capacity-heatmap .high-utilization {
+    color: #e53e3e;
+}
+
+.capacity-heatmap .team-summary {
     margin-top: 20px;
+    padding: 15px;
+    background: #f7fafc;
+    border-radius: 8px;
+    border-left: 4px solid #4299e1;
+}
+
+.capacity-heatmap .summary-header h4 {
+    margin: 0 0 10px 0;
+    color: #2d3748;
+}
+
+.capacity-heatmap .summary-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+.capacity-heatmap .stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.capacity-heatmap .stat-label {
+    font-weight: 500;
+    color: #4a5568;
+}
+
+.capacity-heatmap .stat-value {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+.capacity-heatmap .loading-message {
+    text-align: center;
+    padding: 40px;
+    color: #718096;
+    font-style: italic;
+}
+
+/* Responsive design for capacity heatmap */
+@media (max-width: 768px) {
+    .capacity-heatmap .grid-header,
+    .capacity-heatmap .member-row {
+        grid-template-columns: 1fr;
+        text-align: left;
+    }
+    
+    .capacity-heatmap .grid-header > div,
+    .capacity-heatmap .member-row > div {
+        border-right: none;
+        border-bottom: 1px solid #e2e8f0;
+    }
+    
+    .capacity-heatmap .summary-stats {
+        grid-template-columns: 1fr;
+    }
 }
 
 .heatmap-legend h4 {

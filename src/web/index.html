@@ -237,79 +237,11 @@
                         <option value="sprint-12">Sprint 12</option>
                     </select>
                 </div>
-                <div class="heatmap-container">
-                    <div class="heatmap-grid">
-                        <div class="heatmap-header">
-                            <div class="member-header">Team Member</div>
-                            <div class="day-header">Mon</div>
-                            <div class="day-header">Tue</div>
-                            <div class="day-header">Wed</div>
-                            <div class="day-header">Thu</div>
-                            <div class="day-header">Fri</div>
-                            <div class="capacity-header">Total Load</div>
-                        </div>
-                        
-                        <!-- Team Member Rows -->
-                        <div class="member-row">
-                            <div class="member-name">John Doe</div>
-                            <div class="capacity-cell high">8h</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="capacity-cell low">4h</div>
-                            <div class="capacity-cell high">8h</div>
-                            <div class="capacity-cell medium">5h</div>
-                            <div class="total-load high">31h / 40h (78%)</div>
-                        </div>
-                        
-                        <div class="member-row">
-                            <div class="member-name">Jane Smith</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="capacity-cell high">8h</div>
-                            <div class="capacity-cell high">7h</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="capacity-cell low">3h</div>
-                            <div class="total-load medium">30h / 40h (75%)</div>
-                        </div>
-                        
-                        <div class="member-row">
-                            <div class="member-name">Mike Wilson</div>
-                            <div class="capacity-cell critical">8h</div>
-                            <div class="capacity-cell critical">8h</div>
-                            <div class="capacity-cell high">8h</div>
-                            <div class="capacity-cell critical">8h</div>
-                            <div class="capacity-cell high">7h</div>
-                            <div class="total-load critical">39h / 40h (98%)</div>
-                        </div>
-                        
-                        <div class="member-row">
-                            <div class="member-name">Sarah Jones</div>
-                            <div class="capacity-cell low">3h</div>
-                            <div class="capacity-cell medium">5h</div>
-                            <div class="capacity-cell low">4h</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="capacity-cell low">2h</div>
-                            <div class="total-load low">20h / 40h (50%)</div>
-                        </div>
-                        
-                        <div class="member-row">
-                            <div class="member-name">Emma Davis</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="capacity-cell medium">7h</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="capacity-cell high">8h</div>
-                            <div class="capacity-cell medium">5h</div>
-                            <div class="total-load medium">32h / 40h (80%)</div>
-                        </div>
-                        
-                        <div class="member-row">
-                            <div class="member-name">Alex Brown</div>
-                            <div class="capacity-cell high">7h</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="capacity-cell high">8h</div>
-                            <div class="capacity-cell medium">5h</div>
-                            <div class="capacity-cell medium">6h</div>
-                            <div class="total-load medium">32h / 40h (80%)</div>
-                        </div>
-                    </div>
+                
+                <!-- Dynamic Capacity Heatmap Container -->
+                <div class="capacity-heatmap">
+                    <!-- This will be populated dynamically by integration.js -->
+                    <div class="loading-message">Loading team capacity data...</div>
                 </div>
                 
                 <div class="heatmap-legend">
@@ -317,19 +249,15 @@
                     <div class="legend-items">
                         <div class="legend-item">
                             <div class="legend-color low"></div>
-                            <span>Low (0-50%)</span>
+                            <span>Low (0-60%)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color medium"></div>
-                            <span>Medium (51-75%)</span>
+                            <span>Medium (60-80%)</span>
                         </div>
                         <div class="legend-item">
                             <div class="legend-color high"></div>
-                            <span>High (76-90%)</span>
-                        </div>
-                        <div class="legend-item">
-                            <div class="legend-color critical"></div>
-                            <span>Critical (91-100%)</span>
+                            <span>High (80-100%)</span>
                         </div>
                     </div>
                 </div>
