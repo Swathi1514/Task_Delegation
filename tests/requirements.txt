@@ -1,0 +1,32 @@
+# TaskFlow Backend Testing Requirements
+
+# Core testing framework
+pytest>=7.0.0
+pytest-cov>=4.0.0
+pytest-mock>=3.10.0
+pytest-timeout>=2.1.0
+
+# Test utilities
+unittest-xml-reporting>=3.2.0
+coverage>=7.0.0
+
+# Mock and fixtures
+responses>=0.23.0
+factory-boy>=3.2.0
+
+# Performance testing
+pytest-benchmark>=4.0.0
+memory-profiler>=0.60.0
+
+# Test reporting
+pytest-html>=3.1.0
+pytest-json-report>=1.5.0
+
+# Code quality (optional)
+flake8>=6.0.0
+black>=23.0.0
+isort>=5.12.0
+
+# Development dependencies
+ipython>=8.0.0
+jupyter>=1.0.0

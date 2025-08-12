@@ -6,6 +6,7 @@ Simulates JIRA REST API responses for TaskFlow testing without requiring actual 
 
 import json
 import datetime
+import os
 from typing import Dict, List, Optional
 
 class MockJiraAPI:
@@ -16,10 +17,15 @@ class MockJiraAPI:
     def load_mock_data(self):
         """Load mock users and tasks from JSON files"""
         try:
-            with open('../data/mock_jira_users.json', 'r') as f:
+            # Get the directory of this script
+            script_dir = os.path.dirname(os.path.abspath(__file__))
+            users_path = os.path.join(script_dir, '../data/mock_jira_users.json')
+            tasks_path = os.path.join(script_dir, '../data/mock_jira_tasks.json')
+            
+            with open(users_path, 'r') as f:
                 self.users_data = json.load(f)
             
-            with open('../data/mock_jira_tasks.json', 'r') as f:
+            with open(tasks_path, 'r') as f:
                 self.tasks_data = json.load(f)
                 
             print("✅ Mock JIRA data loaded successfully")
