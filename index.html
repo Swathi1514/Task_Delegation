@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TaskFlow - AI-Powered Task Assignment</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="integration.css">
 </head>
 <body>
     <div class="container">
@@ -79,144 +80,143 @@
             <div class="task-list-section">
                 <h3>Tasks</h3>
                 <div class="task-list">
-                    <!-- Task Item 1 -->
+                    <!-- TASK-101: User Authentication UI -->
                     <div class="task-item">
                         <div class="task-header">
                             <div class="task-info">
-                                <h4>Implement User Authentication</h4>
+                                <h4>TASK-101: Implement user authentication UI</h4>
                                 <div class="task-meta">
-                                    <span class="project-tag">Web Application</span>
+                                    <span class="project-tag">TaskFlow Development</span>
                                     <span class="priority-tag high">High</span>
-                                    <span class="due-date">Due: Dec 15, 2024</span>
+                                    <span class="due-date">Due: Aug 20, 2025</span>
+                                    <span class="story-points">8 pts</span>
                                 </div>
                             </div>
-                            <button class="get-recommendation-btn" data-task-id="task-1">Get Recommendation</button>
+                            <button class="get-recommendation-btn" data-task-id="TASK-101">Get Recommendation</button>
                         </div>
                         <div class="task-description">
-                            <p>Implement OAuth 2.0 authentication with JWT tokens for the web application.</p>
+                            <p>Create login and registration forms with validation and error handling</p>
                             <div class="required-skills">
                                 <strong>Required Skills:</strong>
-                                <span class="skill-tag">React</span>
-                                <span class="skill-tag">Node.js</span>
-                                <span class="skill-tag">JWT</span>
+                                <span class="skill-tag">React (3+)</span>
+                                <span class="skill-tag">JavaScript (4+)</span>
+                                <span class="skill-tag">CSS (3+)</span>
                             </div>
                         </div>
-                        <div class="recommendations hidden" id="rec-task-1">
-                            <h5>Top 3 Recommendations:</h5>
-                            <div class="recommendation-chips">
-                                <div class="rec-chip best" data-member-id="john-doe">
-                                    <span class="member-name">John Doe</span>
-                                    <span class="score">95%</span>
-                                </div>
-                                <div class="rec-chip" data-member-id="jane-smith">
-                                    <span class="member-name">Jane Smith</span>
-                                    <span class="score">87%</span>
-                                </div>
-                                <div class="rec-chip" data-member-id="mike-wilson">
-                                    <span class="member-name">Mike Wilson</span>
-                                    <span class="score">82%</span>
-                                </div>
-                            </div>
-                            <div class="assignment-actions">
-                                <button class="assign-btn" data-task-id="task-1">Override & Assign</button>
-                                <label class="notify-toggle">
-                                    <input type="checkbox" checked> Notify assignee
-                                </label>
-                            </div>
+                        <div class="recommendations hidden" id="rec-TASK-101">
+                            <!-- Recommendations will be populated by integration.js -->
                         </div>
                     </div>
 
-                    <!-- Task Item 2 -->
+                    <!-- TASK-102: Recommendation API -->
                     <div class="task-item">
                         <div class="task-header">
                             <div class="task-info">
-                                <h4>Database Migration Script</h4>
+                                <h4>TASK-102: Design and implement recommendation API</h4>
                                 <div class="task-meta">
-                                    <span class="project-tag">API Service</span>
+                                    <span class="project-tag">TaskFlow Development</span>
                                     <span class="priority-tag critical">Critical</span>
-                                    <span class="due-date">Due: Dec 12, 2024</span>
+                                    <span class="due-date">Due: Aug 18, 2025</span>
+                                    <span class="story-points">13 pts</span>
                                 </div>
                             </div>
-                            <button class="get-recommendation-btn" data-task-id="task-2">Get Recommendation</button>
+                            <button class="get-recommendation-btn" data-task-id="TASK-102">Get Recommendation</button>
                         </div>
                         <div class="task-description">
-                            <p>Create migration script for database schema changes in production environment.</p>
+                            <p>Create REST API endpoints for task recommendation engine with scoring algorithm</p>
                             <div class="required-skills">
                                 <strong>Required Skills:</strong>
-                                <span class="skill-tag">PostgreSQL</span>
-                                <span class="skill-tag">Python</span>
-                                <span class="skill-tag">DevOps</span>
+                                <span class="skill-tag">Python (4+)</span>
+                                <span class="skill-tag">API Design (4+)</span>
+                                <span class="skill-tag">Django (3+)</span>
                             </div>
                         </div>
-                        <div class="recommendations hidden" id="rec-task-2">
-                            <h5>Top 3 Recommendations:</h5>
-                            <div class="recommendation-chips">
-                                <div class="rec-chip best" data-member-id="sarah-jones">
-                                    <span class="member-name">Sarah Jones</span>
-                                    <span class="score">92%</span>
-                                </div>
-                                <div class="rec-chip" data-member-id="alex-brown">
-                                    <span class="member-name">Alex Brown</span>
-                                    <span class="score">88%</span>
-                                </div>
-                                <div class="rec-chip" data-member-id="mike-wilson">
-                                    <span class="member-name">Mike Wilson</span>
-                                    <span class="score">79%</span>
-                                </div>
-                            </div>
-                            <div class="assignment-actions">
-                                <button class="assign-btn" data-task-id="task-2">Override & Assign</button>
-                                <label class="notify-toggle">
-                                    <input type="checkbox" checked> Notify assignee
-                                </label>
-                            </div>
+                        <div class="recommendations hidden" id="rec-TASK-102">
+                            <!-- Recommendations will be populated by integration.js -->
                         </div>
                     </div>
 
-                    <!-- Task Item 3 -->
+                    <!-- TASK-103: Testing Framework -->
                     <div class="task-item">
                         <div class="task-header">
                             <div class="task-info">
-                                <h4>Mobile App UI Redesign</h4>
+                                <h4>TASK-103: Set up automated testing framework</h4>
                                 <div class="task-meta">
-                                    <span class="project-tag">Mobile App</span>
+                                    <span class="project-tag">TaskFlow Development</span>
                                     <span class="priority-tag medium">Medium</span>
-                                    <span class="due-date">Due: Dec 20, 2024</span>
+                                    <span class="due-date">Due: Aug 25, 2025</span>
+                                    <span class="story-points">5 pts</span>
                                 </div>
                             </div>
-                            <button class="get-recommendation-btn" data-task-id="task-3">Get Recommendation</button>
+                            <button class="get-recommendation-btn" data-task-id="TASK-103">Get Recommendation</button>
                         </div>
                         <div class="task-description">
-                            <p>Redesign the mobile application user interface for better user experience.</p>
+                            <p>Implement unit tests, integration tests, and end-to-end testing for the application</p>
                             <div class="required-skills">
                                 <strong>Required Skills:</strong>
-                                <span class="skill-tag">React Native</span>
-                                <span class="skill-tag">UI/UX</span>
-                                <span class="skill-tag">Mobile Design</span>
+                                <span class="skill-tag">Testing (4+)</span>
+                                <span class="skill-tag">Selenium (3+)</span>
+                                <span class="skill-tag">Jest (3+)</span>
                             </div>
                         </div>
-                        <div class="recommendations hidden" id="rec-task-3">
-                            <h5>Top 3 Recommendations:</h5>
-                            <div class="recommendation-chips">
-                                <div class="rec-chip best" data-member-id="emma-davis">
-                                    <span class="member-name">Emma Davis</span>
-                                    <span class="score">94%</span>
-                                </div>
-                                <div class="rec-chip" data-member-id="jane-smith">
-                                    <span class="member-name">Jane Smith</span>
-                                    <span class="score">86%</span>
-                                </div>
-                                <div class="rec-chip" data-member-id="tom-garcia">
-                                    <span class="member-name">Tom Garcia</span>
-                                    <span class="score">81%</span>
+                        <div class="recommendations hidden" id="rec-TASK-103">
+                            <!-- Recommendations will be populated by integration.js -->
+                        </div>
+                    </div>
+
+                    <!-- TASK-104: Database Schema -->
+                    <div class="task-item">
+                        <div class="task-header">
+                            <div class="task-info">
+                                <h4>TASK-104: Database schema design and migration</h4>
+                                <div class="task-meta">
+                                    <span class="project-tag">TaskFlow Development</span>
+                                    <span class="priority-tag high">High</span>
+                                    <span class="due-date">Due: Aug 22, 2025</span>
+                                    <span class="story-points">8 pts</span>
                                 </div>
                             </div>
-                            <div class="assignment-actions">
-                                <button class="assign-btn" data-task-id="task-3">Override & Assign</button>
-                                <label class="notify-toggle">
-                                    <input type="checkbox" checked> Notify assignee
-                                </label>
+                            <button class="get-recommendation-btn" data-task-id="TASK-104">Get Recommendation</button>
+                        </div>
+                        <div class="task-description">
+                            <p>Design database schema for users, tasks, and recommendations with migration scripts</p>
+                            <div class="required-skills">
+                                <strong>Required Skills:</strong>
+                                <span class="skill-tag">PostgreSQL (3+)</span>
+                                <span class="skill-tag">Python (3+)</span>
+                                <span class="skill-tag">Django (3+)</span>
                             </div>
+                        </div>
+                        <div class="recommendations hidden" id="rec-TASK-104">
+                            <!-- Recommendations will be populated by integration.js -->
+                        </div>
+                    </div>
+
+                    <!-- TASK-105: Capacity Dashboard -->
+                    <div class="task-item">
+                        <div class="task-header">
+                            <div class="task-info">
+                                <h4>TASK-105: Create capacity dashboard UI</h4>
+                                <div class="task-meta">
+                                    <span class="project-tag">TaskFlow Development</span>
+                                    <span class="priority-tag medium">Medium</span>
+                                    <span class="due-date">Due: Aug 28, 2025</span>
+                                    <span class="story-points">10 pts</span>
+                                </div>
+                            </div>
+                            <button class="get-recommendation-btn" data-task-id="TASK-105">Get Recommendation</button>
+                        </div>
+                        <div class="task-description">
+                            <p>Build interactive dashboard showing team capacity, workload distribution, and availability</p>
+                            <div class="required-skills">
+                                <strong>Required Skills:</strong>
+                                <span class="skill-tag">React (4+)</span>
+                                <span class="skill-tag">JavaScript (4+)</span>
+                                <span class="skill-tag">UI/UX Design (3+)</span>
+                            </div>
+                        </div>
+                        <div class="recommendations hidden" id="rec-TASK-105">
+                            <!-- Recommendations will be populated by integration.js -->
                         </div>
                     </div>
                 </div>
@@ -400,5 +400,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="integration.js"></script>
 </body>
 </html>

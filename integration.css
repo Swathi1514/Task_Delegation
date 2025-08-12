@@ -1,0 +1,201 @@
+/* Integration-specific styles for TaskFlow */
+
+/* Story points styling */
+.story-points {
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-left: 8px;
+}
+
+/* Enhanced recommendation chips */
+.recommendation-chip {
+    background: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 8px 0;
+    transition: all 0.3s ease;
+}
+
+.recommendation-chip:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    transform: translateY(-1px);
+}
+
+.recommendation-chip.primary {
+    background: #e8f5e8;
+    border-color: #4caf50;
+}
+
+.recommendation-chip.secondary {
+    background: #fff3e0;
+    border-color: #ff9800;
+}
+
+.chip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.member-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.score {
+    background: #2196f3;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.chip-details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.chip-details small {
+    color: #666;
+    font-size: 0.85em;
+}
+
+.assign-btn {
+    background: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.3s ease;
+}
+
+.assign-btn:hover {
+    background: #45a049;
+}
+
+/* Capacity heatmap styles */
+.capacity-member {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin: 8px 0;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border-left: 4px solid #ddd;
+}
+
+.member-info {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.capacity-bar {
+    width: 200px;
+    height: 20px;
+    background: #e0e0e0;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+.capacity-fill {
+    height: 100%;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+/* Notification styles */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 4px;
+    color: white;
+    font-weight: 500;
+    z-index: 1000;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success {
+    background: #4caf50;
+}
+
+.notification.error {
+    background: #f44336;
+}
+
+.notification.info {
+    background: #2196f3;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Loading state for buttons */
+.get-recommendation-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Enhanced task meta styling */
+.task-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+/* Skill tag improvements */
+.skill-tag {
+    background: #e1f5fe;
+    color: #0277bd;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    margin: 2px;
+    display: inline-block;
+}
+
+/* Priority tag colors */
+.priority-tag.critical {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.priority-tag.high {
+    background: #fff3e0;
+    color: #ef6c00;
+}
+
+.priority-tag.medium {
+    background: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.priority-tag.low {
+    background: #e8f5e8;
+    color: #2e7d32;
+}
