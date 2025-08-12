@@ -1,8 +1,8 @@
-# TaskFlow Authentication System
+# The Stones TaskFlow Authentication System
 
 ## Overview
 
-The TaskFlow application now includes a comprehensive authentication system that protects the main application and provides role-based access control.
+The Stones TaskFlow application now includes a comprehensive authentication system that protects the main application and provides role-based access control.
 
 ## Files Created
 
@@ -45,17 +45,17 @@ The TaskFlow application now includes a comprehensive authentication system that
 ## Demo Credentials
 
 ### Administrator
-- **Email**: `admin@taskflow.com`
+- **Email**: `admin@thestones-taskflow.com`
 - **Password**: `admin123`
 - **Permissions**: View all tasks, assign tasks, manage users, view analytics
 
 ### Project Manager
-- **Email**: `manager@taskflow.com`
+- **Email**: `manager@thestones-taskflow.com`
 - **Password**: `manager123`
 - **Permissions**: View team tasks, assign tasks, view analytics
 
 ### Team Member
-- **Email**: `user@taskflow.com`
+- **Email**: `user@thestones-taskflow.com`
 - **Password**: `user123`
 - **Permissions**: View assigned tasks, update task status
 
@@ -84,7 +84,7 @@ open login.html
 - System will simulate SSO authentication
 
 ### 3. **Main Application**
-- After successful login, you'll be redirected to the main TaskFlow application
+- After successful login, you'll be redirected to the main The Stones TaskFlow application
 - Your user info will appear in the header
 - Features will be filtered based on your role permissions
 
@@ -159,7 +159,7 @@ open login.html
 Edit the `MOCK_USERS` object in `login.js`:
 ```javascript
 const MOCK_USERS = {
-    'newuser@taskflow.com': {
+    'newuser@thestones-taskflow.com': {
         password: 'password123',
         role: 'user',
         name: 'New User',
@@ -227,4 +227,4 @@ The current implementation uses mock data for demonstration. To integrate with a
 
 ---
 
-*This authentication system provides enterprise-grade security while maintaining ease of use for the TaskFlow application.*
+*This authentication system provides enterprise-grade security while maintaining ease of use for The Stones TaskFlow application.*
