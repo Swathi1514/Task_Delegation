@@ -17,8 +17,8 @@ JIRA_SERVER = 'https://swathi1514.atlassian.net'
 PROJECT_KEY = 'SCRUM'
 
 # You'll need to set these - get API token from Jira settings
-JIRA_EMAIL = 'your-email@example.com'  # Replace with your email
-JIRA_API_TOKEN = 'your-api-token'      # Replace with your API token
+JIRA_EMAIL = 'swathi1514@gmail.com'  # Replace with your email
+JIRA_API_TOKEN = 'ATATT3xFfGF0kf81vZuO6E7oB3wit6Dx0t2042lPdGi1-injn_dOw-AE_txDe7_uKSP6RaOK02-6feF-s1a2_542EIAB8oSoRLDRPVy6B8y4AN5Jlh2qAnOVL9E3VkVYYCMFh9poxrnHHGySGePc9NgBHkMx3tgrwEIoP0AxXnvo7FldWwz7QrA=60675AEB'      # Replace with your API token
 
 def connect_to_jira():
     """Connect to Jira using email and API token"""
@@ -39,11 +39,10 @@ def create_epic(jira):
         'project': {'key': PROJECT_KEY},
         'summary': 'TaskFlow MVP Backend Development',
         'description': 'Epic for all TaskFlow backend development tasks including Jira integration, recommendation engine, and API development.',
-        'issuetype': {'name': 'Epic'},
-        'priority': {'name': 'High'},
-        'customfield_10011': 'TaskFlow MVP Backend Development'  # Epic Name field (may vary)
+        'issuetype': {'name': 'Epic'}
+        # Removed priority and customfield_10011 as they're not available in this JIRA configuration
     }
-    
+
     try:
         epic = jira.create_issue(fields=epic_data)
         print(f"Created Epic: {epic.key}")
@@ -54,7 +53,7 @@ def create_epic(jira):
 
 def create_tasks(jira, epic_key):
     """Create all backend tasks"""
-    
+
     tasks = [
         {
             'summary': 'Set up Jira OAuth integration for reading task data',
@@ -142,9 +141,9 @@ Required Skills: Algorithm Development: 5, Mathematics/Statistics: 4, Node.js/Py
         }
         # Add more tasks as needed...
     ]
-    
+
     created_issues = []
-    
+
     for task in tasks:
         issue_data = {
             'project': {'key': PROJECT_KEY},
@@ -154,52 +153,52 @@ Required Skills: Algorithm Development: 5, Mathematics/Statistics: 4, Node.js/Py
             'priority': {'name': task['priority']},
             'labels': task['labels']
         }
-        
+
         # Add story points if available (field ID may vary)
         if 'story_points' in task:
             issue_data['customfield_10016'] = task['story_points']  # Story Points field
-        
-        # Link to epic
-        if epic_key:
-            issue_data['customfield_10014'] = epic_key  # Epic Link field (may vary)
-        
+
+        # Link to epic - commented out as customfield_10014 is not available
+        # if epic_key:
+        #     issue_data['customfield_10014'] = epic_key  # Epic Link field (may vary)
+
         try:
             issue = jira.create_issue(fields=issue_data)
             created_issues.append(issue.key)
             print(f"Created {task['issuetype']}: {issue.key} - {task['summary']}")
         except Exception as e:
             print(f"Failed to create task '{task['summary']}': {e}")
-    
+
     return created_issues
 
 def main():
     """Main function to create all Jira tickets"""
     print("TaskFlow Jira Ticket Creator")
     print("=" * 40)
-    
-    # Check if credentials are set
-    if JIRA_EMAIL == 'your-email@example.com' or JIRA_API_TOKEN == 'your-api-token':
-        print("❌ Please update JIRA_EMAIL and JIRA_API_TOKEN in the script")
-        print("\nTo get your API token:")
-        print("1. Go to https://id.atlassian.com/manage-profile/security/api-tokens")
-        print("2. Click 'Create API token'")
-        print("3. Copy the token and update this script")
-        return
-    
+
+    # Check if credentials are set - commented out for testing
+    # if JIRA_EMAIL == 'swathi1514@gmail.com' or JIRA_API_TOKEN == 'ATATT3xFfGF0kf81vZuO6E7oB3wit6Dx0t2042lPdGi1-injn_dOw-AE_txDe7_uKSP6RaOK02-6feF-s1a2_542EIAB8oSoRLDRPVy6B8y4AN5Jlh2qAnOVL9E3VkVYYCMFh9poxrnHHGySGePc9NgBHkMx3tgrwEIoP0AxXnvo7FldWwz7QrA=60675AEB':
+    #     print("❌ Please update JIRA_EMAIL and JIRA_API_TOKEN in the script")
+    #     print("\nTo get your API token:")
+    #     print("1. Go to https://id.atlassian.com/manage-profile/security/api-tokens")
+    #     print("2. Click 'Create API token'")
+    #     print("3. Copy the token and update this script")
+    #     return
+
     # Connect to Jira
     jira = connect_to_jira()
     if not jira:
         return
-    
+
     # Create epic
     print("\n📋 Creating Epic...")
     epic_key = create_epic(jira)
-    
+
     if epic_key:
         # Create tasks
         print(f"\n🎯 Creating tasks linked to Epic {epic_key}...")
         created_issues = create_tasks(jira, epic_key)
-        
+
         print(f"\n✅ Successfully created {len(created_issues)} issues!")
         print(f"Epic: {epic_key}")
         print("Tasks:", ", ".join(created_issues))
