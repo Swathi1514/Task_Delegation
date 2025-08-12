@@ -155,15 +155,27 @@ class TaskFlowIntegration {
         try {
             console.log('🎭 Loading data from Mock JIRA API...');
             
-            // Load mock users
-            const usersResponse = await fetch('../data/mock_jira_users.json');
-            const usersData = await usersResponse.json();
-            this.users = usersData.users;
+            // Try to load mock users - use fallback if fetch fails
+            try {
+                const usersResponse = await fetch('./data/mock_jira_users.json');
+                if (!usersResponse.ok) throw new Error('Failed to fetch users');
+                const usersData = await usersResponse.json();
+                this.users = usersData.users;
+            } catch (fetchError) {
+                console.log('📁 Using fallback user data...');
+                this.users = this.getFallbackUsers();
+            }
 
-            // Load mock tasks
-            const tasksResponse = await fetch('../data/mock_jira_tasks.json');
-            const tasksData = await tasksResponse.json();
-            this.tasks = tasksData.tasks;
+            // Try to load mock tasks - use fallback if fetch fails
+            try {
+                const tasksResponse = await fetch('./data/mock_jira_tasks.json');
+                if (!tasksResponse.ok) throw new Error('Failed to fetch tasks');
+                const tasksData = await tasksResponse.json();
+                this.tasks = tasksData.tasks;
+            } catch (fetchError) {
+                console.log('📁 Using fallback task data...');
+                this.tasks = this.getFallbackTasks();
+            }
 
             this.apiInfo = { type: 'mock', connected: true };
 
@@ -174,6 +186,76 @@ class TaskFlowIntegration {
             // Fallback to hardcoded data if files not accessible
             this.loadFallbackData();
         }
+    }
+
+    getFallbackUsers() {
+        return [
+            {
+                id: "user_001",
+                username: "stacey.johnson",
+                displayName: "Stacey",
+                skills: [
+                    {"name": "React", "level": 4},
+                    {"name": "JavaScript", "level": 5},
+                    {"name": "CSS", "level": 4},
+                    {"name": "UI/UX Design", "level": 3}
+                ],
+                capacity: { currentLoad: 25, maxCapacity: 40 }
+            },
+            {
+                id: "user_002",
+                username: "maya.patel",
+                displayName: "Maya",
+                skills: [
+                    {"name": "Python", "level": 5},
+                    {"name": "Django", "level": 4},
+                    {"name": "API Design", "level": 4},
+                    {"name": "AWS", "level": 3}
+                ],
+                capacity: { currentLoad: 32, maxCapacity: 40 }
+            },
+            {
+                id: "user_003",
+                username: "supraja.reddy",
+                displayName: "Supraja",
+                skills: [
+                    {"name": "Java", "level": 4},
+                    {"name": "Testing", "level": 5},
+                    {"name": "Selenium", "level": 4},
+                    {"name": "React", "level": 3}
+                ],
+                capacity: { currentLoad: 20, maxCapacity: 40 }
+            }
+        ];
+    }
+
+    getFallbackTasks() {
+        return [
+            {
+                id: "TASK-101",
+                title: "Implement user authentication UI",
+                description: "Create login and registration forms with validation",
+                priority: "High",
+                storyPoints: 8,
+                requiredSkills: [
+                    {"name": "React", "minLevel": 3},
+                    {"name": "JavaScript", "minLevel": 4},
+                    {"name": "CSS", "minLevel": 3}
+                ]
+            },
+            {
+                id: "TASK-102",
+                title: "Design and implement recommendation API",
+                description: "Create REST API endpoints for task recommendation engine",
+                priority: "Critical",
+                storyPoints: 13,
+                requiredSkills: [
+                    {"name": "Python", "minLevel": 4},
+                    {"name": "API Design", "minLevel": 4},
+                    {"name": "Django", "minLevel": 3}
+                ]
+            }
+        ];
     }
 
     loadFallbackData() {

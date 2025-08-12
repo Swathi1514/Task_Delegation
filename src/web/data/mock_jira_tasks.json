@@ -1,0 +1,126 @@
+{
+  "projects": [
+    {
+      "id": "TASK-001",
+      "key": "TASK",
+      "name": "TaskFlow Development",
+      "description": "AI-powered task assignment system development",
+      "projectTypeKey": "software",
+      "lead": "maya.patel"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "TASK-101",
+      "key": "TASK-101",
+      "summary": "Implement user authentication UI",
+      "description": "Create login and registration forms with validation and error handling",
+      "issueType": "Story",
+      "priority": "High",
+      "status": "To Do",
+      "assignee": null,
+      "reporter": "maya.patel",
+      "project": "TASK",
+      "storyPoints": 8,
+      "dueDate": "2025-08-20",
+      "labels": ["frontend", "authentication", "ui"],
+      "requiredSkills": [
+        {"name": "React", "minLevel": 3},
+        {"name": "JavaScript", "minLevel": 4},
+        {"name": "CSS", "minLevel": 3}
+      ],
+      "estimatedHours": 16
+    },
+    {
+      "id": "TASK-102", 
+      "key": "TASK-102",
+      "summary": "Design and implement recommendation API",
+      "description": "Create REST API endpoints for task recommendation engine with scoring algorithm",
+      "issueType": "Story",
+      "priority": "Critical",
+      "status": "To Do", 
+      "assignee": null,
+      "reporter": "maya.patel",
+      "project": "TASK",
+      "storyPoints": 13,
+      "dueDate": "2025-08-18",
+      "labels": ["backend", "api", "algorithm"],
+      "requiredSkills": [
+        {"name": "Python", "minLevel": 4},
+        {"name": "API Design", "minLevel": 4},
+        {"name": "Django", "minLevel": 3}
+      ],
+      "estimatedHours": 26
+    },
+    {
+      "id": "TASK-103",
+      "key": "TASK-103", 
+      "summary": "Set up automated testing framework",
+      "description": "Implement unit tests, integration tests, and end-to-end testing for the application",
+      "issueType": "Task",
+      "priority": "Medium",
+      "status": "To Do",
+      "assignee": null,
+      "reporter": "supraja.reddy",
+      "project": "TASK",
+      "storyPoints": 5,
+      "dueDate": "2025-08-25",
+      "labels": ["testing", "automation", "qa"],
+      "requiredSkills": [
+        {"name": "Testing", "minLevel": 4},
+        {"name": "Selenium", "minLevel": 3},
+        {"name": "Jest", "minLevel": 3}
+      ],
+      "estimatedHours": 10
+    },
+    {
+      "id": "TASK-104",
+      "key": "TASK-104",
+      "summary": "Database schema design and migration",
+      "description": "Design database schema for users, tasks, and recommendations with migration scripts",
+      "issueType": "Story",
+      "priority": "High",
+      "status": "To Do",
+      "assignee": null,
+      "reporter": "maya.patel", 
+      "project": "TASK",
+      "storyPoints": 8,
+      "dueDate": "2025-08-22",
+      "labels": ["database", "backend", "migration"],
+      "requiredSkills": [
+        {"name": "PostgreSQL", "minLevel": 3},
+        {"name": "Python", "minLevel": 3},
+        {"name": "Django", "minLevel": 3}
+      ],
+      "estimatedHours": 16
+    },
+    {
+      "id": "TASK-105",
+      "key": "TASK-105",
+      "summary": "Create capacity dashboard UI",
+      "description": "Build interactive dashboard showing team capacity, workload distribution, and availability",
+      "issueType": "Story", 
+      "priority": "Medium",
+      "status": "To Do",
+      "assignee": null,
+      "reporter": "stacey.johnson",
+      "project": "TASK",
+      "storyPoints": 10,
+      "dueDate": "2025-08-28",
+      "labels": ["frontend", "dashboard", "visualization"],
+      "requiredSkills": [
+        {"name": "React", "minLevel": 4},
+        {"name": "JavaScript", "minLevel": 4},
+        {"name": "UI/UX Design", "minLevel": 3}
+      ],
+      "estimatedHours": 20
+    }
+  ],
+  "metadata": {
+    "created": "2025-08-12T03:29:00Z",
+    "version": "1.0",
+    "description": "Mock JIRA tasks for TaskFlow testing",
+    "totalTasks": 5,
+    "totalStoryPoints": 44
+  }
+}
