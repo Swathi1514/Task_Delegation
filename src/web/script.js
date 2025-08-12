@@ -44,22 +44,22 @@ function setupRecommendationButtons() {
             
             if (recommendationsDiv.classList.contains('hidden')) {
                 // Show loading state
-                button.textContent = 'Loading...';
+                button.textContent = '⏳ Loading...';
                 button.disabled = true;
                 
                 // Simulate API call delay
                 setTimeout(() => {
                     recommendationsDiv.classList.remove('hidden');
-                    button.textContent = 'Refresh Recommendations';
+                    button.textContent = '🔄 Refresh Recommendations';
                     button.disabled = false;
                 }, 1000);
             } else {
                 // Refresh recommendations
-                button.textContent = 'Loading...';
+                button.textContent = '⏳ Loading...';
                 button.disabled = true;
                 
                 setTimeout(() => {
-                    button.textContent = 'Refresh Recommendations';
+                    button.textContent = '🔄 Refresh Recommendations';
                     button.disabled = false;
                     showNotification('Recommendations refreshed!');
                 }, 800);

@@ -102,7 +102,7 @@ function redirectToLogin() {
     `;
     
     setTimeout(() => {
-        window.location.href = 'login.html';
+        window.location.href = '../../login.html';
     }, 2000);
 }
 
@@ -345,7 +345,7 @@ function handleLogout() {
     
     // Redirect to login after short delay
     setTimeout(() => {
-        window.location.href = 'login.html';
+        window.location.href = '../../login.html';
     }, 1500);
 }
 

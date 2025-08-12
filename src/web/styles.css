@@ -683,7 +683,97 @@ body {
     line-height: 1.5;
 }
 
-/* Utility Classes */
+/* Enhanced Recommendation Chips */
+.recommendation-chip {
+    background: white;
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.recommendation-chip:hover {
+    border-color: #667eea;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.recommendation-chip.primary {
+    border-color: #48bb78;
+    background: linear-gradient(135deg, #f0fff4 0%, #e6fffa 100%);
+    box-shadow: 0 4px 8px rgba(72, 187, 120, 0.2);
+}
+
+.recommendation-chip.secondary {
+    border-color: #ed8936;
+    background: linear-gradient(135deg, #fffaf0 0%, #fef5e7 100%);
+}
+
+.chip-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.chip-header .member-name {
+    font-weight: 600;
+    color: #2d3748;
+    font-size: 1rem;
+}
+
+.chip-header .score {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #48bb78;
+}
+
+.recommendation-chip.primary .score {
+    color: #38a169;
+}
+
+.recommendation-chip.secondary .score {
+    color: #dd6b20;
+}
+
+.chip-details {
+    margin-bottom: 12px;
+}
+
+.chip-details small {
+    display: block;
+    color: #4a5568;
+    margin-bottom: 4px;
+    font-size: 0.85rem;
+}
+
+.recommendation-chip .assign-btn {
+    width: 100%;
+    padding: 8px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.recommendation-chip .assign-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3);
+}
+
+.recommendation-chip.primary .assign-btn {
+    background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+}
+
+.recommendation-chip.primary .assign-btn:hover {
+    box-shadow: 0 4px 8px rgba(72, 187, 120, 0.3);
+}
+
 .hidden {
     display: none !important;
 }

@@ -139,7 +139,7 @@ class TaskFlowIntegration {
         this.displayRecommendations(taskId, recommendations);
         
         // Reset button
-        button.textContent = 'Get Recommendation';
+        button.textContent = '🎯 Get Recommendation';
         button.disabled = false;
     }
 
@@ -216,17 +216,24 @@ class TaskFlowIntegration {
             const chip = document.createElement('div');
             chip.className = `recommendation-chip ${index === 0 ? 'primary' : 'secondary'}`;
             
+            // Fun emojis based on ranking
+            const rankEmojis = ['🏆', '🥈', '🥉', '⭐', '👍'];
+            const rankEmoji = rankEmojis[index] || '👤';
+            
+            // Score-based emojis
+            const scoreEmoji = rec.score >= 0.9 ? '🔥' : rec.score >= 0.8 ? '✨' : rec.score >= 0.7 ? '👌' : '💪';
+            
             chip.innerHTML = `
                 <div class="chip-header">
-                    <span class="member-name">${rec.user.displayName}</span>
-                    <span class="score">${Math.round(rec.score * 100)}%</span>
+                    <span class="member-name">${rankEmoji} ${rec.user.displayName}</span>
+                    <span class="score">${scoreEmoji} ${Math.round(rec.score * 100)}%</span>
                 </div>
                 <div class="chip-details">
-                    <small>${rec.explanation.skillMatch}</small>
-                    <small>${rec.explanation.currentLoad}</small>
+                    <small>🎯 ${rec.explanation.skillMatch}</small>
+                    <small>⚡ ${rec.explanation.currentLoad}</small>
                 </div>
                 <button class="assign-btn" data-task-id="${taskId}" data-member-id="${rec.user.id}">
-                    Assign
+                    🚀 Assign
                 </button>
             `;
 

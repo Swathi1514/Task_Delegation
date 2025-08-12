@@ -1,6 +1,6 @@
 ## UI Requirements
 
-- **Task List** with "Get Recommendation" button and chips showing top-3 with scores
+- **Task List** with "Get Recommendation" button and chips showing top-3 with scores and fun emoji
 - **Explainability Drawer:** for the top suggestion, show: skill match %, current load, calendar constraints, similar past tasks
 - **Override & Assign** button; Notify assignee toggle
 - **Capacity Heatmap** view (people × days/sprint, colored by load)
